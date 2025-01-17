@@ -1,6 +1,6 @@
 # flutter storytime
 
-A new Flutter project.
+A new Flutter project. Most of the code is written with Chat GTP. The project is a simple storytime app that uses OpenAI's GPT to generate stories based on user input. The user can also ask the AI to generate a riddle for them.
 
 ## Getting Started
 
