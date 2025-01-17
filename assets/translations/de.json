@@ -1,0 +1,15 @@
+{
+    "greeting": "Hallo",
+    "welcome_message": "Willkommen in der App!",
+    "promt_first_line": "Erstelle eine Geschichte basierend auf den folgenden Eingaben:",
+    "promt_last_line": "\n\nNutze diese Informationen, um eine kreative, unterhaltsame und lesenswerte Geschichte zu erstellen.",
+    "page_title_settings": "Einstellungen",
+    "page_title_story_create": "Erstelle eine Geschichte",
+    "page_title_story_list": "Liste der Geschichten",
+    "settings_headline": "Hier können Einstellungen vorgenommen werden.",
+    "error_story_could_not_be_loaded": "Fehler beim Laden der Geschichten.",
+    "error_stories_not_found": "Keine Geschichten gefunden.",
+    "fallback_story_title": "Keine Geschichte ausgewählt",
+    "fallback_story_summary": "Bitte wählen Sie eine Geschichte aus.",
+    "story_chapter_prefix": "Kapitel"
+}

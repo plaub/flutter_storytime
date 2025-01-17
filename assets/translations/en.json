@@ -1,0 +1,16 @@
+{
+    "greeting": "Hello",
+    "welcome_message": "Welcome to the app!",
+    "promt_first_line": "Create a story based on the following inputs:",
+    "promt_last_line": "\n\nUse this information to create a creative, entertaining and readable story.",
+    "page_title_settings": "Settings",
+    "page_title_story_create": "Create a story",
+    "page_title_story_list": "List of stories",
+    "settings_headline": "Here you can make settings.",
+    "error_story_could_not_be_loaded": "Error loading stories.",
+    "error_stories_not_found": "No stories found.",
+    "fallback_story_title": "No story selected",
+    "fallback_story_summary": "Please select a story.",
+    "story_chapter_prefix": "Chapter"
+  }
+  
