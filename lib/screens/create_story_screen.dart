@@ -139,7 +139,7 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
             role: OpenAIChatMessageRole.system,
             content: [
               OpenAIChatCompletionChoiceMessageContentItemModel.text(
-                  "Du bist ein kreativer Geschichtenautor.")
+                  "promt_role_system".tr())
             ], // String for the message
           ),
           OpenAIChatCompletionChoiceMessageModel(
@@ -154,7 +154,7 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
           .timeout(
         const Duration(seconds: 300), // Timeout to 5 minutes
         onTimeout: () {
-          throw Exception("The request took too long and was canceled.");
+          throw Exception("request_timeout".tr());
         },
       );
 
@@ -172,8 +172,8 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
             .map((item) => item.text)
             .join('\n');
       } else {
-        throw Exception(
-            'Unknown type for content: ${message.content.runtimeType}');
+        throw Exception('unknown_content_type'
+            .tr(args: [message.content.runtimeType.toString()]));
       }
 
       if (kDebugMode) {
@@ -186,7 +186,7 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
       });
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Story successfully generated!')),
+        SnackBar(content: Text('story_generated_success'.tr())),
       );
 
       // Save the story
@@ -194,7 +194,8 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
     } catch (e) {
       setState(() => _isGenerating = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error when generating the story: $e')),
+        SnackBar(
+            content: Text('story_generation_error'.tr(args: [e.toString()]))),
       );
     }
   }
@@ -202,22 +203,22 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
   Future<void> _saveStory() async {
     if (_generatedStory == null || _generatedStory!.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No generated story to save.')),
+        SnackBar(content: Text('no_story_to_save'.tr())),
       );
       return;
     }
 
     final story = Story(
-      title: "Generierte Geschichte",
+      title: "generated_story_title".tr(),
       summary:
-          "Eine Geschichte basierend auf dem Prompt: ${_promptController.text.trim()}",
+          "generated_story_summary".tr(args: [_promptController.text.trim()]),
       chapters: [Chapter(text: _generatedStory!, media: null)],
     );
 
     await widget.databaseService.addStory(story);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('History successfully saved!')),
+      SnackBar(content: Text('story_saved_success'.tr())),
     );
 
     // Navigate to the HomeScreen

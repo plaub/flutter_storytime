@@ -3,6 +3,7 @@
     "welcome_message": "Welcome to the app!",
     "promt_first_line": "Create a story based on the following inputs:",
     "promt_last_line": "\n\nUse this information to create a creative, entertaining and readable story.",
+    "promt_role_system": "You are a creative story writer.",
     "page_title_settings": "Settings",
     "page_title_story_create": "Create a story",
     "page_title_story_list": "List of stories",
@@ -11,6 +12,14 @@
     "error_stories_not_found": "No stories found.",
     "fallback_story_title": "No story selected",
     "fallback_story_summary": "Please select a story.",
-    "story_chapter_prefix": "Chapter"
+    "story_chapter_prefix": "Chapter",
+    "request_timeout": "Request timed out.",
+    "unknown_content_type": "Unknown content type: {0}",
+    "story_generated_success": "Story generated successfully.",
+    "story_generation_error": "Error generating story: {0}",
+    "no_story_to_save": "No story to save.",
+    "generated_story_title": "Generated story",
+    "generated_story_summary": "The story was generated successfully.",
+    "story_saved_success": "Story saved successfully."
   }
   

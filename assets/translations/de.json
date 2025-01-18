@@ -3,6 +3,7 @@
     "welcome_message": "Willkommen in der App!",
     "promt_first_line": "Erstelle eine Geschichte basierend auf den folgenden Eingaben:",
     "promt_last_line": "\n\nNutze diese Informationen, um eine kreative, unterhaltsame und lesenswerte Geschichte zu erstellen.",
+    "promt_role_system": "Du bist ein kreativer Geschichtenautor.",
     "page_title_settings": "Einstellungen",
     "page_title_story_create": "Erstelle eine Geschichte",
     "page_title_story_list": "Liste der Geschichten",
@@ -11,5 +12,13 @@
     "error_stories_not_found": "Keine Geschichten gefunden.",
     "fallback_story_title": "Keine Geschichte ausgewählt",
     "fallback_story_summary": "Bitte wählen Sie eine Geschichte aus.",
-    "story_chapter_prefix": "Kapitel"
+    "story_chapter_prefix": "Kapitel",
+    "request_timeout": "Zeitüberschreitung bei der Anforderung.",
+    "unknown_content_type": "Unbekannter Inhaltstyp: {0}",
+    "story_generated_success": "Geschichte erfolgreich generiert.",
+    "story_generation_error": "Fehler beim Generieren der Geschichte: {0}",
+    "no_story_to_save": "Keine Geschichte zum Speichern.",
+    "generated_story_title": "Generierte Geschichte",
+    "generated_story_summary": "Die Geschichte wurde erfolgreich generiert.",
+    "story_saved_success": "Geschichte erfolgreich gespeichert.",
 }
