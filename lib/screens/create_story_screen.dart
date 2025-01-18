@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -41,10 +42,14 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
 
       final webViewState = _webViewKey.currentState;
       if (webViewState != null) {
-        debugPrint('WebViewState found: $webViewState');
+        if (kDebugMode) {
+          debugPrint('WebViewState found: $webViewState');
+        }
         _subscribeToRiddleEvents(webViewState);
       } else {
-        debugPrint('WebViewState is not available');
+        if (kDebugMode) {
+          debugPrint('WebViewState is not available');
+        }
       }
     });
   }
@@ -58,15 +63,21 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
 
   /// Subscribe to the stream of the RiddleWebViewComponent and save events
   void _subscribeToRiddleEvents(RiddleWebViewComponentState webViewState) {
-    debugPrint('Subscribing to Riddle events');
+    if (kDebugMode) {
+      debugPrint('Subscribing to Riddle events');
+    }
 
     webViewState.riddleEventStream.listen((event) {
       if (event.action == 'Form_Submit') {
-        debugPrint('Riddle-riddleEventStream: ${event.formAnswers}');
+        if (kDebugMode) {
+          debugPrint('Riddle-riddleEventStream: ${event.formAnswers}');
+        }
       }
 
       if (event.action == 'CoreMetrics' && event.name == 'Finish') {
-        debugPrint('Riddle finished. Generating story...');
+        if (kDebugMode) {
+          debugPrint('Riddle finished. Generating story...');
+        }
 
         _generateStory(); // Generiere die Geschichte
 
@@ -76,7 +87,9 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
       setState(() {
         _riddleEvents.add(event); // Füge das Event zur Liste hinzu
       });
-      debugPrint('Received event: ${event.category}');
+      if (kDebugMode) {
+        debugPrint('Received event: ${event.category}');
+      }
     });
   }
 
@@ -112,7 +125,9 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
 
     setState(() => _isGenerating = true);
 
-    debugPrint('Prompt: $prompt');
+    if (kDebugMode) {
+      debugPrint('Prompt: $prompt');
+    }
 
     try {
       // OpenAI API call
@@ -161,7 +176,9 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
             'Unknown type for content: ${message.content.runtimeType}');
       }
 
-      debugPrint("Generated Story: $generatedStory");
+      if (kDebugMode) {
+        debugPrint("Generated Story: $generatedStory");
+      }
 
       setState(() {
         _generatedStory = generatedStory;
