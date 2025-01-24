@@ -1,50 +1,51 @@
-import 'package:hive/hive.dart';
-import '../models/chapter.dart';
-import '../models/story.dart';
+import 'dart:async';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DatabaseService {
-  static const String _boxName = 'storiesBox';
+  static final DatabaseService _instance = DatabaseService._internal();
 
-  /// Ruft die Box ab, ohne sie erneut zu öffnen
-  Box<Story> get storiesBox {
-    if (!Hive.isBoxOpen(_boxName)) {
-      throw HiveError(
-          'Box $_boxName is not open. Did you forget to call Hive.openBox()?');
-    }
-    return Hive.box<Story>(_boxName);
+  factory DatabaseService() => _instance;
+
+  DatabaseService._internal();
+
+  static Database? _database;
+
+  Future<Database> get database async {
+    if (_database != null) return _database!;
+
+    _database = await _initDatabase();
+    return _database!;
   }
 
-  /// Initialisiert den DatabaseService
-  static Future<void> initDatabaseService() async {
-    // Adapter registrieren
-    Hive.registerAdapter(StoryAdapter());
-    Hive.registerAdapter(ChapterAdapter());
+  Future<Database> _initDatabase() async {
+    final dbPath = await getDatabasesPath();
+    final path = join(dbPath, 'stories.db');
 
-    // Box für Geschichten öffnen
-    if (!Hive.isBoxOpen(_boxName)) {
-      await Hive.openBox<Story>(_boxName);
-    } else {
-      print('Box already open');
-    }
+    return await openDatabase(
+      path,
+      version: 1,
+      onCreate: _onCreate,
+    );
   }
 
-  /// Fügt eine neue Story hinzu
-  Future<void> addStory(Story story) async {
-    await storiesBox.add(story);
-  }
+  Future<void> _onCreate(Database db, int version) async {
+    await db.execute('''
+      CREATE TABLE stories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        summary TEXT NOT NULL
+      )
+    ''');
 
-  /// Ruft alle gespeicherten Geschichten ab
-  Future<List<Story>> getStories() async {
-    return storiesBox.values.toList();
-  }
-
-  /// Aktualisiert eine bestehende Geschichte
-  Future<void> updateStory(int index, Story story) async {
-    await storiesBox.putAt(index, story);
-  }
-
-  /// Löscht eine Geschichte
-  Future<void> deleteStory(int index) async {
-    await storiesBox.deleteAt(index);
+    await db.execute('''
+      CREATE TABLE chapters (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        story_id INTEGER NOT NULL,
+        text TEXT NOT NULL,
+        media TEXT,
+        FOREIGN KEY (story_id) REFERENCES stories (id) ON DELETE CASCADE
+      )
+    ''');
   }
 }

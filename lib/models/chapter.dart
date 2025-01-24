@@ -1,17 +1,26 @@
-import 'package:hive/hive.dart';
-
-part 'chapter.g.dart';
-
-@HiveType(typeId: 1)
 class Chapter {
-  @HiveField(0)
-  String text;
+  final int? id;
+  final int storyId;
+  late final String text;
+  final String? media;
 
-  @HiveField(1)
-  String? media; // Optional
+  Chapter({this.id, required this.storyId, required this.text, this.media});
 
-  Chapter({
-    required this.text,
-    this.media,
-  });
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'story_id': storyId,
+      'text': text,
+      'media': media,
+    };
+  }
+
+  static Chapter fromMap(Map<String, dynamic> map) {
+    return Chapter(
+      id: map['id'],
+      storyId: map['story_id'],
+      text: map['text'],
+      media: map['media'],
+    );
+  }
 }

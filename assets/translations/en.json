@@ -9,7 +9,7 @@
     "page_title_story_list": "List of stories",
     "settings_headline": "Here you can make settings.",
     "error_story_could_not_be_loaded": "Error loading stories.",
-    "error_stories_not_found": "No stories found.",
+    "error_no_stories_found": "No stories found.",
     "fallback_story_title": "No story selected",
     "fallback_story_summary": "Please select a story.",
     "story_chapter_prefix": "Chapter",
@@ -19,7 +19,6 @@
     "story_generation_error": "Error generating story: {0}",
     "no_story_to_save": "No story to save.",
     "generated_story_title": "Generated story",
-    "generated_story_summary": "The story was generated successfully.",
     "story_saved_success": "Story saved successfully."
   }
   

@@ -9,7 +9,7 @@
     "page_title_story_list": "Liste der Geschichten",
     "settings_headline": "Hier können Einstellungen vorgenommen werden.",
     "error_story_could_not_be_loaded": "Fehler beim Laden der Geschichten.",
-    "error_stories_not_found": "Keine Geschichten gefunden.",
+    "error_no_stories_found": "Keine Geschichten gefunden.",
     "fallback_story_title": "Keine Geschichte ausgewählt",
     "fallback_story_summary": "Bitte wählen Sie eine Geschichte aus.",
     "story_chapter_prefix": "Kapitel",
@@ -19,6 +19,5 @@
     "story_generation_error": "Fehler beim Generieren der Geschichte: {0}",
     "no_story_to_save": "Keine Geschichte zum Speichern.",
     "generated_story_title": "Generierte Geschichte",
-    "generated_story_summary": "Die Geschichte wurde erfolgreich generiert.",
-    "story_saved_success": "Geschichte erfolgreich gespeichert.",
+    "story_saved_success": "Geschichte erfolgreich gespeichert."
 }

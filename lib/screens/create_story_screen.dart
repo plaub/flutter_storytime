@@ -4,21 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:geschichten_magie/models/RiddleEvents.dart';
+import 'package:geschichten_magie/repositories/chapter_repository.dart';
+import 'package:geschichten_magie/repositories/story_repository.dart';
 import 'package:geschichten_magie/widgets/RiddleWebViewComponent.dart';
 import '../models/story.dart';
 import '../models/chapter.dart';
 import '../services/database_service.dart';
 
 class CreateStoryScreen extends StatefulWidget {
-  final DatabaseService databaseService;
-
-  const CreateStoryScreen({super.key, required this.databaseService});
+  const CreateStoryScreen({super.key});
 
   @override
   _CreateStoryScreenState createState() => _CreateStoryScreenState();
 }
 
 class _CreateStoryScreenState extends State<CreateStoryScreen> {
+  final storyRepo = StoryRepository();
+  final chapterRepo = ChapterRepository();
+
   final _promptController = TextEditingController();
   bool _isGenerating = false;
   String? _generatedStory;
@@ -210,12 +213,15 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
 
     final story = Story(
       title: "generated_story_title".tr(),
-      summary:
-          "generated_story_summary".tr(args: [_promptController.text.trim()]),
-      chapters: [Chapter(text: _generatedStory!, media: null)],
+      summary: _generatedStory!.split('\n').take(3).join('\n'), // First 3 lines
     );
 
-    await widget.databaseService.addStory(story);
+    final storyId = await storyRepo.addStory(story);
+    final chapters = [
+      Chapter(text: _generatedStory!, media: null, storyId: storyId)
+    ];
+
+    await chapterRepo.addChapters(chapters);
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('story_saved_success'.tr())),

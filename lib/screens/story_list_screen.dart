@@ -1,8 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../models/chapter.dart';
+import 'package:geschichten_magie/models/chapter.dart';
+import 'package:geschichten_magie/repositories/chapter_repository.dart';
+import 'package:geschichten_magie/repositories/story_repository.dart';
 import '../models/story.dart';
-import '../services/database_service.dart';
 import 'create_story_screen.dart';
 import 'story_detail_screen.dart';
 
@@ -14,7 +15,9 @@ class StoryListScreen extends StatefulWidget {
 }
 
 class _StoryListScreenState extends State<StoryListScreen> {
-  final DatabaseService _databaseService = DatabaseService();
+  final storyRepo = StoryRepository();
+  final chapterRepo = ChapterRepository();
+
   late Future<List<Story>> _storiesFuture;
 
   final appBarTitle = 'page_title_story_list'.tr();
@@ -29,8 +32,12 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
   void _loadStories() {
     setState(() {
-      _storiesFuture = _databaseService.getStories();
+      _storiesFuture = storyRepo.getStories();
     });
+  }
+
+  Future<List<Chapter>> _getChapters(int storyId) async {
+    return await chapterRepo.getChapters(storyId);
   }
 
   @override
@@ -48,8 +55,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
             // print error message
             debugPrint(snapshot.error.toString());
 
-            return Center(
-                child: Text(errorLoadingStories);
+            return Center(child: Text(errorLoadingStories));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(child: Text(errorStoriesNotFound));
           }
@@ -63,11 +69,13 @@ class _StoryListScreenState extends State<StoryListScreen> {
                 title: Text(story.title),
                 subtitle: Text(story.summary),
                 trailing: const Icon(Icons.arrow_forward),
-                onTap: () {
+                onTap: () async {
+                  final chapters = await _getChapters(story.id!);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StoryDetailScreen(story: story),
+                      builder: (context) =>
+                          StoryDetailScreen(story: story, chapters: chapters),
                     ),
                   );
                 },
@@ -81,8 +89,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  CreateStoryScreen(databaseService: _databaseService),
+              builder: (context) => CreateStoryScreen(),
             ),
           );
         },
