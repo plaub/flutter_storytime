@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "geschichten_magie" "\0"
+            VALUE "FileDescription", "flutter_storytime" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "geschichten_magie" "\0"
+            VALUE "InternalName", "flutter_storytime" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "geschichten_magie.exe" "\0"
-            VALUE "ProductName", "geschichten_magie" "\0"
+            VALUE "OriginalFilename", "flutter_storytime.exe" "\0"
+            VALUE "ProductName", "flutter_storytime" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

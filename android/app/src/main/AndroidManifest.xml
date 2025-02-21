@@ -3,7 +3,7 @@
 
 
     <application
-        android:label="geschichten_magie"
+        android:label="flutter_storytime"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

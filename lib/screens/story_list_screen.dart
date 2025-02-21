@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:geschichten_magie/models/chapter.dart';
-import 'package:geschichten_magie/repositories/chapter_repository.dart';
-import 'package:geschichten_magie/repositories/story_repository.dart';
+import 'package:flutter_storytime/models/chapter.dart';
+import 'package:flutter_storytime/repositories/chapter_repository.dart';
+import 'package:flutter_storytime/repositories/story_repository.dart';
 import '../models/story.dart';
 import 'create_story_screen.dart';
 import 'story_detail_screen.dart';

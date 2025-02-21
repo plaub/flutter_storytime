@@ -1,4 +1,4 @@
-package com.example.geschichten_magie
+package com.example.flutter_storytime
 
 import io.flutter.embedding.android.FlutterActivity
 

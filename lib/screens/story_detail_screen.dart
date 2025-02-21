@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:geschichten_magie/models/chapter.dart';
-import 'package:geschichten_magie/screens/story_editor_screen.dart';
+import 'package:flutter_storytime/models/chapter.dart';
+import 'package:flutter_storytime/screens/story_editor_screen.dart';
 import '../models/story.dart';
 import 'chapter_editor_screen.dart';
 

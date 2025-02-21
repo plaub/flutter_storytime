@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:geschichten_magie/models/chapter.dart';
-import 'package:geschichten_magie/repositories/chapter_repository.dart';
+import 'package:flutter_storytime/models/chapter.dart';
+import 'package:flutter_storytime/repositories/chapter_repository.dart';
 
 class ChapterEditorScreen extends StatefulWidget {
   final int chapterIndex;

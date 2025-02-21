@@ -3,13 +3,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:geschichten_magie/models/RiddleEvents.dart';
-import 'package:geschichten_magie/repositories/chapter_repository.dart';
-import 'package:geschichten_magie/repositories/story_repository.dart';
-import 'package:geschichten_magie/widgets/RiddleWebViewComponent.dart';
+import 'package:flutter_storytime/models/RiddleEvents.dart';
+import 'package:flutter_storytime/repositories/chapter_repository.dart';
+import 'package:flutter_storytime/repositories/story_repository.dart';
+import 'package:flutter_storytime/widgets/RiddleWebViewComponent.dart';
 import '../models/story.dart';
 import '../models/chapter.dart';
-import '../services/database_service.dart';
 
 class CreateStoryScreen extends StatefulWidget {
   const CreateStoryScreen({super.key});
@@ -27,7 +26,7 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
   String? _generatedStory;
   FocusNode _focusNode = FocusNode();
   final List<RiddleEvent> _riddleEvents =
-      []; // Liste zum Speichern der RiddleEvents
+      []; // List for saving the RiddleEvents
   final GlobalKey<RiddleWebViewComponentState> _webViewKey =
       GlobalKey<RiddleWebViewComponentState>();
 
@@ -82,13 +81,13 @@ class _CreateStoryScreenState extends State<CreateStoryScreen> {
           debugPrint('Riddle finished. Generating story...');
         }
 
-        _generateStory(); // Generiere die Geschichte
+        _generateStory(); // Generate the story
 
         return;
       }
 
       setState(() {
-        _riddleEvents.add(event); // Füge das Event zur Liste hinzu
+        _riddleEvents.add(event); // Add the event to the list
       });
       if (kDebugMode) {
         debugPrint('Received event: ${event.category}');

@@ -1,5 +1,5 @@
-import 'package:geschichten_magie/models/chapter.dart';
-import 'package:geschichten_magie/services/database_service.dart';
+import 'package:flutter_storytime/models/chapter.dart';
+import 'package:flutter_storytime/services/database_service.dart';
 
 class ChapterRepository {
   final DatabaseService _dbService = DatabaseService();

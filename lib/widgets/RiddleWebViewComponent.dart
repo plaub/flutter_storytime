@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:geschichten_magie/models/RiddleEvents.dart';
+import 'package:flutter_storytime/models/RiddleEvents.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class RiddleWebViewComponent extends StatefulWidget {
